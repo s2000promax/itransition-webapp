@@ -4,10 +4,11 @@
     "description": "Fullstack web application for authorization and user management",
     "scripts": {
         "prepare": "husky install",
+        "format": "prettier --write \"client/src/**/*.ts\" \"server/src/**/*.ts\"",
         "start:dev": "concurrently \"npm --prefix server run start:dev\" \"npm --prefix client run start:dev\""
     },
     "lint-staged": {
-        "**/*": "prettier --write --ignore-unknown \"client/src/**/*.ts\" \"server/src/**/*.ts\""
+        "**/*": "prettier --write --ignore-unknown"
     },
     "private": true,
     "workspaces": [
