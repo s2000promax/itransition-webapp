@@ -7,7 +7,7 @@
         "start:dev": "concurrently \"npm --prefix server run start:dev\" \"npm --prefix client run start:dev\""
     },
     "lint-staged": {
-        "**/*": "prettier --write --ignore-unknown"
+        "**/*": "prettier --write --ignore-unknown \"client/src/**/*.ts\" \"server/src/**/*.ts\""
     },
     "private": true,
     "workspaces": [
