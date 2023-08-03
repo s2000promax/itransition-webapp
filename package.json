@@ -1,9 +1,10 @@
 {
     "name": "itransition-webapp",
     "version": "1.0.0",
-    "description": "",
+    "description": "Fullstack web application for authorization and user management",
     "scripts": {
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "start:dev": "concurrently \"npm --prefix server run start:dev\" \"npm --prefix client run start:dev\""
     },
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"
