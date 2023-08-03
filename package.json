@@ -1,0 +1,24 @@
+{
+    "name": "itransition-webapp",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "prepare": "husky install"
+    },
+    "lint-staged": {
+        "**/*": "prettier --write --ignore-unknown"
+    },
+    "private": true,
+    "workspaces": [
+        "client",
+        "server"
+    ],
+    "devDependencies": {
+        "concurrently": "^8.2.0",
+        "husky": "^8.0.3",
+        "lint-staged": "^13.2.3",
+        "prettier": "3.0.1"
+    },
+    "author": "Stan <s2000promax@gmail.com>",
+    "license": "ISC"
+}
