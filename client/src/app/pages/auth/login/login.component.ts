@@ -1,0 +1,71 @@
+import { Component, OnInit } from '@angular/core';
+import { LayoutService } from '@services/app.layout.service';
+import { AuthService } from '@services/auth/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form } from '@shared/types/forms/form.interface';
+import { Credentials } from '@services/auth/types/credentails.type';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { RoutesEnums } from '@config/routes/routesEnums';
+import { Router } from '@angular/router';
+
+interface LoginForm extends Credentials {
+    isRememberMe: boolean;
+}
+
+@UntilDestroy({
+    checkProperties: true,
+})
+@Component({
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+})
+export class LoginComponent implements OnInit {
+    protected readonly RoutesEnums = RoutesEnums;
+
+    loginForm!: FormGroup<Form<LoginForm>>;
+
+    submitted: boolean = false;
+
+    error: string = '';
+
+    constructor(
+        public layoutService: LayoutService,
+        private authService: AuthService,
+        private formBuilder: FormBuilder,
+        private router: Router,
+    ) {}
+
+    ngOnInit(): void {
+        this.loginForm = this.formBuilder.nonNullable.group({
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required]],
+            isRememberMe: [false],
+        });
+    }
+
+    onSubmit(): void {
+        if (this.loginForm.valid) {
+            this.submitted = true;
+            this.error = '';
+            const { email, password, isRememberMe } =
+                this.loginForm.getRawValue();
+
+            this.authService.login({ email, password }).subscribe({
+                next: (response) => {
+                    if (isRememberMe) {
+                        this.authService.setTokenToLS(response.accessToken);
+                    }
+
+                    this.loginForm.reset();
+                    this.submitted = false;
+                    this.router.navigate([RoutesEnums.MAIN]);
+                },
+                error: (error) => {
+                    this.error = error;
+                    this.submitted = false;
+                },
+            });
+        }
+    }
+}

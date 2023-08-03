@@ -1,0 +1,62 @@
+{
+	"app": {
+		"topbar": {
+			"logo": "Zarządzanie użytkownikami",
+			"profile": "Profil",
+			"settings": "Ustawienia"
+		},
+		"footer": {
+			"for": "Zaprojektowany dla",
+			"text": "Wszelkie prawa zastrzeżone.",
+			"link": "Więcej informacji"
+		},
+		"settings": {
+			"theme": "Schemat kolorów",
+			"language": "Język"
+		}
+	},
+	"settings": {
+		"language": {
+			"belorussian": "Białoruski",
+			"english": "Angielski",
+			"polish": "Polskie",
+			"georgian": "Gruziński"
+		}
+	},
+	"auth": {
+		"login" : {
+			"welcome" : "Powitanie",
+			"header" : "Zaloguj się, aby kontynuować",
+			"subheader" : "Potrzebujesz konta",
+			"register" : "Rejestr",
+			"email" : "Poczta elektroniczna",
+			"password" : "Hasło",
+			"rememberme" : "Zapamiętaj mnie",
+			"forgot" : "Zapomniałeś hasła",
+			"signin" : "Zalogować się"
+
+		},
+		"register" : {
+			"welcome" : "Powitanie",
+			"header" : "Potrzebujesz konta",
+			"header_question" : "Zarejestruj się, aby kontynuować",
+			"subheader" : "Posiadasz już konto",
+			"login" : "Zaloguj sie",
+			"email" : "Poczta elektroniczna",
+			"password" : "Hasło",
+			"signup" : "Zapisać się"
+		},
+		"error" : {
+			"header" : "Wystąpił błąd",
+			"subheader" : "Żądany zasób jest niedostępny",
+			"goto" : "Przejdź do Panelu"
+		},
+		"access" : {
+			"header" : "Brak dostępu",
+			"subheader" : "Nie masz niezbędnych uprawnień",
+			"offer" : "Proszę o kontakt z Adminami",
+			"goto" : "Przejdź do Panelu"
+		}
+	}
+}
+

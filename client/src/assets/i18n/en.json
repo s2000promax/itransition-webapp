@@ -1,0 +1,61 @@
+{
+	"app": {
+		"topbar": {
+			"logo": "User management",
+			"profile": "Profile",
+			"settings": "Settings"
+		},
+		"footer": {
+			"for": "Designed for",
+			"text": "All rights reserved.",
+			"link": "More information"
+		},
+		"settings": {
+			"theme": "Color scheme",
+			"language": "Language"
+		}
+	},
+	"settings": {
+		"language": {
+			"belorussian": "Belorussian",
+			"english": "English",
+			"polish": "Polish",
+			"georgian": "Georgian"
+		}
+	},
+	"auth": {
+		"login" : {
+			"welcome" : "Welcome",
+			"header" : "Sign in to continue",
+			"subheader" : "Need an account",
+			"register" : "Register",
+			"email" : "Email",
+			"password" : "Password",
+			"rememberme" : "Remember me",
+			"forgot" : "Forgot password",
+			"signin" : "Sign In"
+
+		},
+		"register" : {
+			"welcome" : "Welcome",
+			"header" : "Need an account",
+			"header_question" : "Sign up to continue",
+			"subheader" : "Already have an account",
+			"login" : "Login",
+			"email" : "Email",
+			"password" : "Password",
+			"signup" : "Sign Up"
+		},
+		"error" : {
+			"header" : "Error Occurred",
+			"subheader" : "Requested resource is not available",
+			"goto" : "Go to Dashboard"
+		},
+		"access" : {
+			"header" : "Access Denied",
+			"subheader" : "You don't have the necessary permissions",
+			"offer" : "Please contact Admins",
+			"goto" : "Go to Dashboard"
+		}
+	}
+}
