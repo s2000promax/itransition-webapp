@@ -7,51 +7,15 @@
   <div class='mt-4'>
     <h5>{{'app.settings.language' | translate}}</h5>
     <div class='grid'>
-      <div class='col-3'>
+      <div class='col-3' *ngFor="let languageItem of languageItems">
         <button
           class='p-link w-2rem h-2rem'
-          (click)='changeLanguage(Languages.ENG)'
+          (click)='changeLanguage(languageItem.language)'
         >
           <img
-            src='assets/layout/images/languages/usa.png'
+            src='assets/layout/images/languages/{{languageItem.src}}'
             class='w-2rem h-2rem'
-            alt='American'
-          >
-        </button>
-      </div>
-      <div class='col-3'>
-        <button
-          class='p-link w-2rem h-2rem'
-          (click)='changeLanguage(Languages.BEL)'
-        >
-          <img
-            src='assets/layout/images/languages/belarus.png'
-            class='w-2rem h-2rem'
-            alt='Belarusian'
-          >
-        </button>
-      </div>
-      <div class='col-3'>
-        <button
-          class='p-link w-2rem h-2rem'
-          (click)='changeLanguage(Languages.PL)'
-        >
-          <img
-            src='assets/layout/images/languages/poland.png'
-            class='w-2rem h-2rem'
-            alt='Polish'
-          >
-        </button>
-      </div>
-      <div class='col-3'>
-        <button
-          class='p-link w-2rem h-2rem'
-          (click)='changeLanguage(Languages.GE)'
-        >
-          <img
-            src='assets/layout/images/languages/georgia.png'
-            class='w-2rem h-2rem'
-            alt='Georgian'
+            alt="{{languageItem.src}}"
           >
         </button>
       </div>
@@ -60,99 +24,16 @@
   <div class='mt-4'>
     <h5>{{'app.settings.theme' | translate}}</h5>
     <div class='grid'>
-      <div class='col-3'>
+
+      <div class='col-3' *ngFor="let themesItem of themesItems">
         <button
           class='p-link w-2rem h-2rem'
-          (click)='changeTheme(ThemeStyles.LIGHT_INDIGO, ColorsStyles.LIGHT)'
+          (click)='changeTheme(themesItem.themeStyle, themesItem.colorStyle)'
         >
           <img
-            src='assets/layout/images/themes/lara-light-indigo.png'
+            src='assets/layout/images/themes/{{themesItem.src}}'
             class='w-2rem h-2rem'
-            alt='Lara Light Indigo'
-          >
-        </button>
-      </div>
-      <div class='col-3'>
-        <button
-          class='p-link w-2rem h-2rem'
-          (click)='changeTheme(ThemeStyles.LIGHT_BLUE, ColorsStyles.LIGHT)'
-        >
-          <img
-            src='assets/layout/images/themes/lara-light-blue.png'
-            class='w-2rem h-2rem'
-            alt='Lara Light Blue'
-          >
-        </button>
-      </div>
-      <div class='col-3'>
-        <button
-          class='p-link w-2rem h-2rem'
-          (click)='changeTheme(ThemeStyles.LIGHT_PURPLE, ColorsStyles.LIGHT)'
-        >
-          <img
-            src='assets/layout/images/themes/lara-light-purple.png'
-            class='w-2rem h-2rem'
-            alt='Lara Light Purple'
-          >
-        </button>
-      </div>
-      <div class='col-3'>
-        <button
-          class='p-link w-2rem h-2rem'
-          (click)='changeTheme(ThemeStyles.LIGHT_TEAL, ColorsStyles.LIGHT)'
-        >
-          <img
-            src='assets/layout/images/themes/lara-light-teal.png'
-            class='w-2rem h-2rem'
-            alt='Lara Light Teal'
-          >
-        </button>
-      </div>
-      <div class='col-3'>
-        <button
-          class='p-link w-2rem h-2rem'
-          (click)='changeTheme(ThemeStyles.DARK_INDIGO, ColorsStyles.DARK)'
-        >
-          <img
-            src='assets/layout/images/themes/lara-dark-indigo.png'
-            class='w-2rem h-2rem'
-            alt='Lara Dark Indigo'
-          >
-        </button>
-      </div>
-      <div class='col-3'>
-        <button
-          class='p-link w-2rem h-2rem'
-          (click)='changeTheme(ThemeStyles.DARK_BLUE, ColorsStyles.DARK)'
-        >
-          <img
-            src='assets/layout/images/themes/lara-dark-blue.png'
-            class='w-2rem h-2rem'
-            alt='Lara Dark Blue'
-          >
-        </button>
-      </div>
-      <div class='col-3'>
-        <button
-          class='p-link w-2rem h-2rem'
-          (click)='changeTheme(ThemeStyles.DARK_PURPLE, ColorsStyles.DARK)'
-        >
-          <img
-            src='assets/layout/images/themes/lara-dark-purple.png'
-            class='w-2rem h-2rem'
-            alt='Lara Dark Purple'
-          >
-        </button>
-      </div>
-      <div class='col-3'>
-        <button
-          class='p-link w-2rem h-2rem'
-          (click)='changeTheme(ThemeStyles.DARK_TEAL, ColorsStyles.DARK)'
-        >
-          <img
-            src='assets/layout/images/themes/lara-dark-teal.png'
-            class='w-2rem h-2rem'
-            alt='Lara Dark Teal'
+            alt="{{themesItem.src}}"
           >
         </button>
       </div>
