@@ -1,5 +1,5 @@
-@use "mixins";
+@use 'mixins';
 
 .gradient-container {
-  @include mixins.auth-gradient-container-style('access');
+    @include mixins.auth-gradient-container-style('access');
 }

@@ -1,7 +1,7 @@
-@use "mixins";
+@use 'mixins';
 
 @include mixins.input-eye-style();
 
 .gradient-container {
-  @include mixins.auth-gradient-container-style('');
+    @include mixins.auth-gradient-container-style('');
 }
