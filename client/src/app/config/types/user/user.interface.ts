@@ -6,7 +6,7 @@ export interface UserInterface {
     createdAt: Date;
     lastLoginAt: Date;
     accessToken: string;
-    status: boolean;
+    isBlocked: boolean;
 }
 
 export interface UserListInterface
