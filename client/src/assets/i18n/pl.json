@@ -43,6 +43,7 @@
 			"subheader" : "Posiadasz już konto",
 			"login" : "Zaloguj sie",
 			"email" : "Poczta elektroniczna",
+			"username" : "Pełne imię i nazwisko",
 			"password" : "Hasło",
 			"signup" : "Zapisać się"
 		},
@@ -56,6 +57,19 @@
 			"subheader" : "Nie masz niezbędnych uprawnień",
 			"offer" : "Proszę o kontakt z Adminami",
 			"goto" : "Przejdź do Panelu"
+		}
+	},
+	"users_management": {
+		"header": "Lista użytkowników"
+	},
+	"uikit": {
+		"controlled_table": {
+			"header_id": "ID",
+			"header_name": "Nazwa",
+			"header_email": "E-mail",
+			"header_register_at": "Data rejestracji",
+			"header_last_login_at": "Ostatnie logowanie",
+			"header_status": "Status"
 		}
 	}
 }

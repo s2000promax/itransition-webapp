@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ErrorRoutingModule } from './error-routing.module';
 import { ErrorComponent } from './error.component';
 import { ButtonModule } from 'primeng/button';
-import { LogoModule } from '@shared/modules/uiKit/logo/logo.module';
+import { LogoModule } from '@shared/uiKit/logo/logo.module';
 import { RippleModule } from 'primeng/ripple';
 import { TranslateModule } from '@ngx-translate/core';
 

@@ -43,6 +43,7 @@
 			"subheader" : "Already have an account",
 			"login" : "Login",
 			"email" : "Email",
+			"username" : "Full name",
 			"password" : "Password",
 			"signup" : "Sign Up"
 		},
@@ -56,6 +57,19 @@
 			"subheader" : "You don't have the necessary permissions",
 			"offer" : "Please contact Admins",
 			"goto" : "Go to Dashboard"
+		}
+	},
+	"users_management": {
+		"header": "Users list"
+	},
+	"uikit": {
+		"controlled_table": {
+			"header_id": "ID",
+			"header_name": "Name",
+			"header_email": "E-mail",
+			"header_register_at": "Register date",
+			"header_last_login_at": "Last login",
+			"header_status": "Status"
 		}
 	}
 }

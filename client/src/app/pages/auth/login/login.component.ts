@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutService } from '@services/app.layout.service';
 import { AuthService } from '@services/auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Form } from '@shared/types/forms/form.interface';
-import { Credentials } from '@services/auth/types/credentails.type';
+import { LoginRequest } from '@services/auth/types/credentails.type';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { RoutesEnums } from '@config/routes/routesEnums';
 import { Router } from '@angular/router';
 
-interface LoginForm extends Credentials {
+interface LoginForm extends LoginRequest {
     isRememberMe: boolean;
 }
 
@@ -30,7 +29,6 @@ export class LoginComponent implements OnInit {
     error: string = '';
 
     constructor(
-        public layoutService: LayoutService,
         private authService: AuthService,
         private formBuilder: FormBuilder,
         private router: Router,

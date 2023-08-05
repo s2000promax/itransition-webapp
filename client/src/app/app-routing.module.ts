@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoutesEnums } from '@config/routes/routesEnums';
 import { AppLayoutComponent } from '@layout/app.layout.component';
-import { Error404Component } from '@shared/components/error404/error404.component';
+import { Error404Component } from '@shared/uiKit/error404/error404.component';
 
 const routes: Routes = [
     {

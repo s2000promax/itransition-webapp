@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutService } from '@services/app.layout.service';
 import { RoutesEnums } from '@config/routes/routesEnums';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Form } from '@shared/types/forms/form.interface';
-import { Credentials } from '@services/auth/types/credentails.type';
+import {
+    RegisterRequest
+} from '@services/auth/types/credentails.type';
 import { AuthService } from '@services/auth/auth.service';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Router } from '@angular/router';
@@ -19,14 +20,13 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
     protected readonly RoutesEnums = RoutesEnums;
 
-    registerForm!: FormGroup<Form<Credentials>>;
+    registerForm!: FormGroup<Form<RegisterRequest>>;
 
     submitted: boolean = false;
 
     error: string = '';
 
     constructor(
-        public layoutService: LayoutService,
         private authService: AuthService,
         private formBuilder: FormBuilder,
         private router: Router,
@@ -35,7 +35,8 @@ export class RegisterComponent implements OnInit {
     ngOnInit(): void {
         this.registerForm = this.formBuilder.nonNullable.group({
             email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, Validators.minLength(6)]],
+            username: ['', [Validators.required]],
+            password: ['', [Validators.required]],
         });
     }
 

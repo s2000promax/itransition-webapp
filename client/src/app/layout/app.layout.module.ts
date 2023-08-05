@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { AppConfigModule } from './modules/config/app.config.module';
-import { AppTopbarModule } from './modules/topbar/app.topbar.module';
-import { AppFooterComponent } from './components/footer/app.footer.component';
+import { AppConfigModule } from '@layout/components/config/app.config.module';
+import { AppTopbarModule } from '@layout/components/topbar/app.topbar.module';
+import { AppFooterComponent } from '@layout/components/footer/app.footer.component';
 import { AppLayoutComponent } from './app.layout.component';
 
 @NgModule({

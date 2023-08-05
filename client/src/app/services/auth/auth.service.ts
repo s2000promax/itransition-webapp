@@ -7,7 +7,7 @@ import { PersistenceService } from '@services/persistence.service';
 import { LocalStorageEnums } from '@config/localStorage/localStorageEnums';
 import { RoutesEnums } from '@config/routes/routesEnums';
 import {
-    Credentials,
+    LoginRequest,
     LoginResponse,
     RegisterResponse,
 } from './types/credentails.type';
@@ -31,7 +31,7 @@ export class AuthService {
         }
     }
 
-    login(data: Credentials): Observable<LoginResponse> {
+    login(data: LoginRequest): Observable<LoginResponse> {
         return this.http
             .post<LoginResponse>(environment.apiUrl + '/auth/login', data)
             .pipe(
@@ -43,7 +43,7 @@ export class AuthService {
             );
     }
 
-    register(data: Credentials): Observable<RegisterResponse> {
+    register(data: LoginRequest): Observable<RegisterResponse> {
         return this.http
             .post<RegisterResponse>(environment.apiUrl + '/auth/register', data)
             .pipe(

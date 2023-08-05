@@ -1,6 +1,6 @@
 export interface UserInterface {
     id: string;
-    name: string;
+    username: string;
     email: string;
     password: string;
     createdAt: Date;
@@ -8,3 +8,5 @@ export interface UserInterface {
     accessToken: string;
     status: boolean;
 }
+
+export interface UserListInterface extends Omit<UserInterface, 'accessToken' | 'password'> {}

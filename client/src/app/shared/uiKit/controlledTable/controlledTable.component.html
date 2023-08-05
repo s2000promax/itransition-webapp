@@ -1,0 +1,40 @@
+<p-table
+  [value]="usersList"
+  [(selection)]="selectedUser"
+  [scrollable]="true"
+  dataKey="id"
+  styleClass="mt-3"
+  responsiveLayout="scroll"
+>
+  <ng-template pTemplate="header">
+    <tr class="cells-style">
+      <th class="w-4rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th>{{ 'uikit.controlled_table.header_id' | translate }}</th>
+      <th>{{ 'uikit.controlled_table.header_name' | translate }}</th>
+      <th>{{ 'uikit.controlled_table.header_email' | translate }}</th>
+      <th>{{ 'uikit.controlled_table.header_register_at' | translate }}</th>
+      <th>{{ 'uikit.controlled_table.header_last_login_at' | translate }}</th>
+      <th>{{ 'uikit.controlled_table.header_status' | translate }}</th>
+    </tr>
+  </ng-template>
+  <ng-template
+    pTemplate="body"
+    ngFor let-user [ngForOf]="selectedUser"
+  >
+    <tr class="cells-style">
+      <td>
+        <p-tableCheckbox [value]="user"></p-tableCheckbox>
+      </td>
+      <td>{{user.id}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.createdAt | date: 'short'}}</td>
+      <td>{{user.lastLoginAt | date: 'short'}}</td>
+      <td>
+        <i class="pi pi-lock{{user.status ? '-open' : ''}}"></i>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

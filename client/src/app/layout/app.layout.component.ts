@@ -3,7 +3,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { LayoutService } from '@services/app.layout.service';
-import { AppTopBarComponent } from '@layout/modules/topbar/app.topbar.component';
+import { AppTopBarComponent } from '@layout/components/topbar/app.topbar.component';
 import { ColorStyles } from '@config/styles/colorStyles';
 
 type ProfileMenuListener = () => void;
