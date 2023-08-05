@@ -6,7 +6,6 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "deploy": "npx prisma generate; npm run build",
     "build": "nest build",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -17,8 +16,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "generate": "npx prisma generate",
-    "migrate": "npx prisma migrate dev --name \"init\""
+    "vercel-build": "prisma generate && prisma migrate deploy && nest build",
+    "prisma:generate": "prisma generate"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
