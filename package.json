@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "description": "Fullstack web application for authorization and user management",
     "scripts": {
-        "prepare": "npx husky install; server/npx prisma genarate",
+        "prepare": "npx husky install",
+        "postinstall": "server/npx prisma genarate",
         "format": "prettier --write \"client/src/**/*.{ts,css,scss,html}\" \"server/src/**/*.ts\"",
         "start:dev": "concurrently \"npm --prefix server run start:dev\" \"npm --prefix client run start:dev\""
     },
