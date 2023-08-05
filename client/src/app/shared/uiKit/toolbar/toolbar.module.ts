@@ -7,9 +7,14 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { FieldsetModule } from 'primeng/fieldset';
 
 @NgModule({
-  declarations: [ToolbarComponent],
-  imports: [CommonModule, PToolbarModule, ButtonModule, SplitButtonModule, FieldsetModule],
-  exports: [ToolbarComponent],
+    declarations: [ToolbarComponent],
+    imports: [
+        CommonModule,
+        PToolbarModule,
+        ButtonModule,
+        SplitButtonModule,
+        FieldsetModule,
+    ],
+    exports: [ToolbarComponent],
 })
-export class ToolbarModule {
-}
+export class ToolbarModule {}

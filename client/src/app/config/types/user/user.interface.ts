@@ -9,4 +9,5 @@ export interface UserInterface {
     status: boolean;
 }
 
-export interface UserListInterface extends Omit<UserInterface, 'accessToken' | 'password'> {}
+export interface UserListInterface
+    extends Omit<UserInterface, 'accessToken' | 'password'> {}

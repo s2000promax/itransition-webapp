@@ -8,7 +8,13 @@ import { LogoModule } from '@shared/uiKit/logo/logo.module';
 
 @NgModule({
     declarations: [AppTopBarComponent],
-  imports: [CommonModule, BadgeModule, TranslateModule, RouterModule, LogoModule],
+    imports: [
+        CommonModule,
+        BadgeModule,
+        TranslateModule,
+        RouterModule,
+        LogoModule,
+    ],
     exports: [AppTopBarComponent],
 })
 export class AppTopbarModule {}
