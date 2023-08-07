@@ -4,7 +4,6 @@ import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 import { isPublic } from '../../libs/decorators';
 
-
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') implements CanActivate {
     constructor(private readonly reflector: Reflector) {

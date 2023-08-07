@@ -16,7 +16,6 @@ import { HttpService } from '@nestjs/axios';
 
 import { Response } from 'express';
 
-
 import { Cookie, Public } from 'src/libs/decorators';
 import { UserResponse } from '../user/responses';
 import { LoginDto, RegisterDto } from './dto';
