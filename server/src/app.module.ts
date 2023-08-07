@@ -21,10 +21,10 @@ import { AuthModule } from '@auth/auth.module';
     ],
     controllers: [AppController],
     providers: [
-    //     {
-    //         provide: APP_GUARD,
-    //         useClass: JwtAuthGuard,
-    //     },
+        //     {
+        //         provide: APP_GUARD,
+        //         useClass: JwtAuthGuard,
+        //     },
         AppService,
     ],
 })
