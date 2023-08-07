@@ -7,10 +7,10 @@ import swaggerConfig from '@config/app/swaggerConfig';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
-    // app.enableShutdownHooks();
-    // app.enableCors();
+    app.enableShutdownHooks();
+    app.enableCors();
     // app.use(cookieParser());
-    // app.setGlobalPrefix('api');
+    app.setGlobalPrefix('api');
 
     const document = SwaggerModule.createDocument(app, swaggerConfig());
     SwaggerModule.setup('api-doc', app, document);
