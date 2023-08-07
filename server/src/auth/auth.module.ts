@@ -6,7 +6,8 @@ import { HttpModule } from '@nestjs/axios';
 import { options } from './config';
 import { STRATEGIES } from './strategies';
 import { GUARDS } from './guards';
-import { UserModule } from '@user/user.module';
+import { UserModule } from '../user/user.module';
+
 
 @Module({
     imports: [JwtModule.registerAsync(options()), UserModule, HttpModule],

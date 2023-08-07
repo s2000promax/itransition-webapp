@@ -1,5 +1,5 @@
 import { IsEmail, IsString, MinLength, Validate } from 'class-validator';
-import { IsPasswordsMatchingConstraint } from '@libs/decorators';
+import { IsPasswordsMatchingConstraint } from '../../libs/decorators';
 
 export class RegisterDto {
     @IsEmail()

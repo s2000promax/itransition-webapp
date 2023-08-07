@@ -15,7 +15,6 @@ import { User } from '@prisma/client';
 import { CurrentUser } from '../libs/decorators';
 import { JwtPayload } from '../config/types/auth/jwtPayload';
 
-
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}
