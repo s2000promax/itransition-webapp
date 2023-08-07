@@ -19,7 +19,7 @@ export class ControlledTableComponent implements OnInit {
                 email: 'gr3091@mail.com',
                 createdAt: new Date('2013-04-17'),
                 lastLoginAt: new Date('2023-08-03'),
-                status: true,
+                isBlocked: true,
             },
             {
                 id: '2',
@@ -27,7 +27,7 @@ export class ControlledTableComponent implements OnInit {
                 email: 'gr3091@mail.com',
                 createdAt: new Date('2013-04-17'),
                 lastLoginAt: new Date('2023-08-03'),
-                status: true,
+                isBlocked: true,
             },
             {
                 id: '3',
@@ -35,7 +35,7 @@ export class ControlledTableComponent implements OnInit {
                 email: 'gr3091@mail.com',
                 createdAt: new Date('2013-04-17'),
                 lastLoginAt: new Date('2023-08-03'),
-                status: false,
+                isBlocked: false,
             },
             {
                 id: '4',
@@ -43,7 +43,7 @@ export class ControlledTableComponent implements OnInit {
                 email: 'gr3091@mail.com',
                 createdAt: new Date('2013-04-17'),
                 lastLoginAt: new Date('2023-08-03'),
-                status: false,
+                isBlocked: false,
             },
             {
                 id: '5',
@@ -51,7 +51,7 @@ export class ControlledTableComponent implements OnInit {
                 email: 'gr3091@mail.com',
                 createdAt: new Date('2013-04-17'),
                 lastLoginAt: new Date('2023-08-03'),
-                status: true,
+                isBlocked: true,
             },
         ];
     }

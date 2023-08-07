@@ -34,7 +34,7 @@
             <td>{{ user.createdAt | date: 'short' }}</td>
             <td>{{ user.lastLoginAt | date: 'short' }}</td>
             <td>
-                <i class="pi pi-lock{{ user.status ? '-open' : '' }}"></i>
+                <i class="pi pi-lock{{ user.isBlocked ? '-open' : '' }}"></i>
             </td>
         </tr>
     </ng-template>

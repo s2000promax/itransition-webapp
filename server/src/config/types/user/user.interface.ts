@@ -8,6 +8,3 @@ export interface UserInterface {
     accessToken: string;
     isBlocked: boolean;
 }
-
-export interface UserListInterface
-    extends Omit<UserInterface, 'accessToken' | 'password'> {}
