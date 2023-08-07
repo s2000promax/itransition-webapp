@@ -18,19 +18,5 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "esModuleInterop": true,
-    "paths": {
-      "@config/*": [
-        "src/config/*"
-      ],
-      "@auth/*": [
-        "src/auth/*"
-      ],
-      "@user/*": [
-        "src/user/*"
-      ],
-      "@libs/*": [
-        "src/libs/*"
-      ]
-    }
   }
 }

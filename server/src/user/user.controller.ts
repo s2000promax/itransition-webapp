@@ -11,9 +11,10 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserResponse } from './responses';
-import { JwtPayload } from '@config/types/auth/jwtPayload';
 import { User } from '@prisma/client';
-import { CurrentUser } from '@libs/decorators';
+import { CurrentUser } from '../libs/decorators';
+import { JwtPayload } from '../config/types/auth/jwtPayload';
+
 
 @Controller('user')
 export class UserController {
