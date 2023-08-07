@@ -7,16 +7,16 @@ import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
-    app.enableShutdownHooks();
-    app.enableCors();
-    app.use(cookieParser());
-    app.setGlobalPrefix('api');
+    // app.enableShutdownHooks();
+    // app.enableCors();
+    // app.use(cookieParser());
+    // app.setGlobalPrefix('api');
 
-    const document = SwaggerModule.createDocument(app, swaggerConfig());
-    SwaggerModule.setup('api-doc', app, document);
+    // const document = SwaggerModule.createDocument(app, swaggerConfig());
+    // SwaggerModule.setup('api-doc', app, document);
 
-    const port = appConfig().port;
+    // const port = appConfig().port;
 
-    await app.listen(port);
+    await app.listen(8080);
 }
 bootstrap();
