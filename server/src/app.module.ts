@@ -7,8 +7,8 @@ import configuration from './config/app/appConfig';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
-// import { APP_GUARD } from '@nestjs/core';
-// import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
     imports: [
@@ -22,10 +22,10 @@ import { AuthModule } from './auth/auth.module';
     ],
     controllers: [AppController],
     providers: [
-        //     {
-        //         provide: APP_GUARD,
-        //         useClass: JwtAuthGuard,
-        //     },
+            {
+                provide: APP_GUARD,
+                useClass: JwtAuthGuard,
+            },
         AppService,
     ],
 })
