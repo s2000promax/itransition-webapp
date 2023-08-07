@@ -1,23 +1,20 @@
 import {
+    BadRequestException,
+    Body,
+    ClassSerializerInterceptor,
     Controller,
     Get,
-    Post,
-    Body,
-    Patch,
-    Param,
-    Delete,
-    UseInterceptors,
-    ClassSerializerInterceptor,
-    BadRequestException,
-    Res,
     HttpStatus,
+    Post,
+    Res,
     UnauthorizedException,
+    UseInterceptors,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ConfigService } from '@nestjs/config';
 import { HttpService } from '@nestjs/axios';
 import { Cookie, Public } from '@libs/decorators';
-import { Response, Request } from 'express';
+import { Response } from 'express';
 import { UserResponse } from '@user/responses';
 import { LoginDto, RegisterDto } from '@auth/dto';
 import { ConstsEnum } from '@config/types/consts/constsEnum';

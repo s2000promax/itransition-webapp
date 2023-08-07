@@ -4,7 +4,6 @@ import {
     UnauthorizedException,
 } from '@nestjs/common';
 import { UserService } from '@user/user.service';
-import { PrismaService } from '@prisma/prisma.service';
 import { Token, User } from '@prisma/client';
 import { compareSync } from 'bcrypt';
 import { v4 } from 'uuid';
@@ -13,6 +12,7 @@ import { JwtService } from '@nestjs/jwt';
 import { TokensInterface } from '@config/types/auth/tokens.interface';
 import { JwtPayload } from '@config/types/auth/jwtPayload';
 import { LoginDto, RegisterDto } from './dto';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class AuthService {

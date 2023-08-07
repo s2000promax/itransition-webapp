@@ -1,12 +1,4 @@
-import {
-    BadRequestException,
-    ForbiddenException,
-    Inject,
-    Injectable,
-} from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { PrismaService } from '@prisma/prisma.service';
+import { ForbiddenException, Inject, Injectable, } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
@@ -14,6 +6,7 @@ import { User } from '@prisma/client';
 import { convertToMillisecondsUtil } from '@libs/utils';
 import { JwtPayload } from '@config/types/auth/jwtPayload';
 import { genSaltSync, hashSync } from 'bcrypt';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class UserService {
