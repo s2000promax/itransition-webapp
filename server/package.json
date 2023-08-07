@@ -6,6 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "prestart":"npx prisma generate",
     "build": "nest build",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -16,8 +17,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "vercel-build": "npx prisma generate && npx prisma migrate deploy && nest build",
-    "prisma:generate": "prisma generate"
+    "vercel-build": "nest build",
+    "prisma:generate": "npx prisma generate"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.0",
