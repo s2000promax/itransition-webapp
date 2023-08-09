@@ -9,12 +9,8 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     app.enableShutdownHooks();
     app.enableCors({
-        origin: [
-            'https://itransition-4.netlify.app',
-            appConfig().deploy_origin,
-        ],
+        origin: 'https://itransition-4.netlify.app',
         credentials: true,
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
     });
     app.use(cookieParser());
     app.setGlobalPrefix('api');
