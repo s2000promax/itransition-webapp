@@ -48,6 +48,8 @@ export class AuthInterceptor implements HttpInterceptor {
                 Accept: 'application/json',
                 Authorization: this.authService.token ?? '',
                 'access-control-allow-origin': '*',
+                'Access-Control-Allow-Methods':
+                    'GET, POST, PUT, DELETE, OPTION',
             },
             withCredentials: true,
         });
