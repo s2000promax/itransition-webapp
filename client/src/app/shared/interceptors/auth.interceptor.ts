@@ -79,7 +79,6 @@ export class AuthInterceptor implements HttpInterceptor {
                         );
                     }
                 } else if (err.status === 403) {
-                    this.authService.logout().subscribe();
                     this.router.navigate([
                         RoutesEnums.AUTH,
                         RoutesEnums.AUTH_ACCESS,
@@ -111,7 +110,6 @@ export class AuthInterceptor implements HttpInterceptor {
             catchError((refreshErr) => {
                 this.isRefreshing = false;
                 this.authService.logout().subscribe();
-                this.router.navigate([RoutesEnums.MAIN]);
 
                 return throwError(refreshErr);
             }),

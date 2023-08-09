@@ -3,13 +3,13 @@ import {
     ClassSerializerInterceptor,
     Controller,
     Get,
-    HttpCode,
     Put,
     UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CurrentUser } from '../libs/decorators';
 import { UserResponse } from './responses';
+import { ApiTags } from '@nestjs/swagger';
 
 interface BodyRequestInterface {
     ids: string[];
@@ -17,6 +17,7 @@ interface BodyRequestInterface {
     delete: boolean;
 }
 
+@ApiTags('user')
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}

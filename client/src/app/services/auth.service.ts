@@ -13,7 +13,7 @@ import {
     RegisterResponse,
 } from '@config/types/auth/credentails.type';
 import { UserInterface } from '@config/types/user/user.interface';
-import { CookieEnums } from '@config/cookie/cookieEnums';
+import { CookiesEnums } from '@config/cookie/cookiesEnums';
 
 interface GetResponse {
     exp: string;
@@ -87,7 +87,7 @@ export class AuthService {
         this.ownId = '';
         this.accessToken.next(null);
         this.persistenceService.removeKey(LocalStorageEnums.ACCESS_TOKEN);
-        this.cookieService.delete(CookieEnums.REFRESH_TOKEN);
+        this.cookieService.delete(CookiesEnums.REFRESH_TOKEN);
     }
 
     get token(): string | null {

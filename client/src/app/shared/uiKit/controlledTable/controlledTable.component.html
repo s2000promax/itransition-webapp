@@ -36,7 +36,8 @@
                     (click)="updateSelectedUsers()"
                 ></p-tableCheckbox>
             </td>
-            <td class="counter-cell"></td>
+            <td class="counter-cell" *ngIf="layoutService.isMobile()"></td>
+            <td *ngIf="layoutService.isDesktop()">{{ user.id }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.createdAt! | date: 'short' }}</td>
