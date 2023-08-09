@@ -20,16 +20,28 @@
                 layoutService.state.menuSidebarVisible
         }"
     >
-        <button class="p-link layout-topbar-button">
-            <i class="pi pi-user"></i>
-            <span>{{ 'app.topbar.profile' | translate }}</span>
-        </button>
         <button
             class="p-link layout-topbar-button"
             (click)="onConfigButtonClick()"
         >
             <i class="pi pi-cog"></i>
             <span>{{ 'app.topbar.settings' | translate }}</span>
+        </button>
+        <button
+            *ngIf="!authService.isAuthenticated()"
+            class="p-link layout-topbar-button"
+            (click)="onLogin()"
+        >
+            <i class="pi pi-sign-in"></i>
+            <span>{{ 'app.topbar.login' | translate }}</span>
+        </button>
+        <button
+            *ngIf="authService.isAuthenticated()"
+            class="p-link layout-topbar-button"
+            (click)="onLogout()"
+        >
+            <i class="pi pi-sign-out"></i>
+            <span>{{ 'app.topbar.logout' | translate }}</span>
         </button>
     </div>
 </div>

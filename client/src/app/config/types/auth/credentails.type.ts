@@ -8,3 +8,9 @@ export type RegisterRequest = Pick<
     'email' | 'password' | 'username'
 >;
 export type RegisterResponse = Pick<UserInterface, 'id'>;
+
+export interface BodyRequestInterface {
+    ids: string[];
+    status: boolean;
+    delete: boolean;
+}

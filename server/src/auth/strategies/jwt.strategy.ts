@@ -1,6 +1,10 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+    ForbiddenException,
+    Injectable,
+    UnauthorizedException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { UserService } from '../../user/user.service';
 import { JwtPayload } from '../../config/types/auth/jwtPayload';
@@ -23,8 +27,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             return null;
         });
 
-        if (!user || user.isBlocked) {
+        if (!user) {
             throw new UnauthorizedException();
+        }
+
+        if (user.isBlocked) {
+            throw new ForbiddenException();
         }
 
         return payload;
