@@ -4,13 +4,22 @@
             icon="pi pi-lock"
             class="mr-2"
             styleClass="p-button-warning"
+            [disabled]="isBlockDisabled"
+            (click)="blockUsers()"
         ></p-button>
         <p-button
             icon="pi pi-lock-open"
             styleClass="p-button-success"
+            [disabled]="isUnblockDisabled"
+            (click)="unblockUsers()"
         ></p-button>
     </div>
     <div class="p-toolbar-group-end">
-        <p-button icon="pi pi-times" styleClass="p-button-danger"></p-button>
+        <p-button
+            icon="pi pi-times"
+            styleClass="p-button-danger"
+            [disabled]="isDeleteDisabled"
+            (click)="deleteUsers()"
+        ></p-button>
     </div>
 </p-toolbar>

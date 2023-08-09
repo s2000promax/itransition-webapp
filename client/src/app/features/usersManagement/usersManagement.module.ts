@@ -5,6 +5,7 @@ import { SharedModule } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { ToolbarModule } from '@shared/uiKit/toolbar/toolbar.module';
 import { ControlledTableModule } from '@shared/uiKit/controlledTable/controlledTable.module';
+import { LoaderModule } from '@shared/uiKit/loader/loader.module';
 
 @NgModule({
     declarations: [UsersManagementComponent],
@@ -14,6 +15,7 @@ import { ControlledTableModule } from '@shared/uiKit/controlledTable/controlledT
         TableModule,
         ToolbarModule,
         ControlledTableModule,
+        LoaderModule,
     ],
     exports: [UsersManagementComponent],
 })

@@ -1,5 +1,6 @@
 import {
     ConflictException,
+    HttpException,
     Injectable,
     UnauthorizedException,
 } from '@nestjs/common';
@@ -27,8 +28,7 @@ export class AuthService {
     async register(dto: RegisterDto) {
         const user: User = await this.userService
             .findOne(dto.email)
-            .catch((err) => {
-                // this.logger.error(err);
+            .catch(() => {
                 return null;
             });
 
@@ -37,15 +37,16 @@ export class AuthService {
                 'User with the same email is already registered',
             );
         }
-        return this.userService.save(dto).catch((err) => {
+
+        return this.userService.create(dto).catch(() => {
             return null;
         });
     }
 
     async login(dto: LoginDto): Promise<TokensInterface> {
         const user: User = await this.userService
-            .findOne(dto.email, true)
-            .catch((err) => {
+            .findOne(dto.email)
+            .catch(() => {
                 return null;
             });
 
@@ -59,9 +60,14 @@ export class AuthService {
     }
 
     async refreshTokens(refreshToken: string): Promise<TokensInterface> {
-        const token = await this.prismaService.token.delete({
-            where: { token: refreshToken },
-        });
+        const token = await this.prismaService.token
+            .delete({
+                where: { token: refreshToken },
+            })
+            .catch(() => {
+                throw new HttpException('Invalid Token', 498);
+            });
+
         if (!token || new Date(token.expired) < new Date()) {
             throw new UnauthorizedException();
         }

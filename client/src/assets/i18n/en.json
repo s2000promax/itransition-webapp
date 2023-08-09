@@ -3,6 +3,8 @@
 		"topbar": {
 			"logo": "User management",
 			"profile": "Profile",
+			"login": "Login",
+			"logout": "Logout",
 			"settings": "Settings"
 		},
 		"footer": {

@@ -1,110 +1,107 @@
-import { ForbiddenException, Inject, Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { Cache } from 'cache-manager';
+import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { genSaltSync, hashSync } from 'bcrypt';
 import { PrismaService } from '../prisma/prisma.service';
-import { convertToMillisecondsUtil } from '../libs/utils';
-import { JwtPayload } from '../config/types/auth/jwtPayload';
 
 @Injectable()
 export class UserService {
-    constructor(
-        private readonly prismaService: PrismaService,
-        @Inject(CACHE_MANAGER) private cacheManager: Cache,
-        private readonly configService: ConfigService,
-    ) {}
+    constructor(private readonly prismaService: PrismaService) {}
 
-    async save(user: Partial<User>) {
-        const hashedPassword = user?.password
+    async create(user: Partial<User>) {
+        const hashedPassword = user.password
             ? this.hashPassword(user.password)
             : null;
 
-        const updatedUser = await this.findOne(user.id);
-
-        const savedUser = await this.prismaService.user.upsert({
-            where: {
-                email: user.email ?? updatedUser.email,
-            },
-            update: {
-                ...updatedUser,
-                isBlocked: user.isBlocked,
-            },
-            create: {
-                email: user.email ?? updatedUser.email,
+        const createdUser = await this.prismaService.user.create({
+            data: {
+                email: user.email,
                 password: hashedPassword,
                 username: user.username,
             },
         });
 
-        await this.cacheManager.set(savedUser.id, savedUser);
-        await this.cacheManager.set(savedUser.email, savedUser);
-
-        return savedUser;
+        if (!createdUser) {
+            return null;
+        } else {
+            return createdUser;
+        }
     }
 
-    async findOne(idOrEmail: string, isReset = false): Promise<User> {
-        if (isReset) {
-            await this.cacheManager.del(idOrEmail);
-        }
+    async findOne(idOrEmail: string): Promise<User> {
+        const foundedUser = await this.prismaService.user.findFirst({
+            where: {
+                OR: [{ id: idOrEmail }, { email: idOrEmail }],
+            },
+        });
 
-        const user = await this.cacheManager.get<User>(idOrEmail);
-
-        if (!user) {
-            const foundedUser = await this.prismaService.user.findFirst({
-                where: {
-                    OR: [{ id: idOrEmail }, { email: idOrEmail }],
-                },
-            });
-            if (!foundedUser) {
-                return null;
-            }
-            await this.cacheManager.set(
-                idOrEmail,
-                foundedUser,
-                convertToMillisecondsUtil(
-                    this.configService.get('JWT_EXPIRED'),
-                ),
-            );
+        if (!foundedUser) {
+            return null;
+        } else {
             return foundedUser;
         }
-
-        return user;
     }
 
     async findAll(): Promise<Array<User>> {
-        return this.prismaService.user.findMany();
+        const users = await this.prismaService.user.findMany();
+        if (!users) {
+            return null;
+        } else {
+            return users;
+        }
     }
 
-    async delete(id: string, user: JwtPayload) {
-        if (user.id === id) {
-            throw new ForbiddenException();
+    async delete(ids: string[]) {
+        const deleteResponse = await this.prismaService.user.deleteMany({
+            where: {
+                id: {
+                    in: ids,
+                },
+            },
+        });
+        if (!deleteResponse) {
+            return JSON.stringify('Failed to remove');
         }
 
-        await Promise.all([
-            await this.cacheManager.del(id),
-            await this.cacheManager.del(user.email),
-        ]);
+        return JSON.stringify(`Success. Removed ${deleteResponse.count} users`);
+    }
 
-        return this.prismaService.user.delete({
-            where: { id },
-            select: { id: true },
-        });
+    async updateIsBlockedStatus(ids: string[], status: boolean) {
+        if (Array.isArray(ids) && typeof status !== undefined) {
+            const updateResponse = await this.prismaService.user.updateMany({
+                where: {
+                    id: {
+                        in: ids,
+                    },
+                },
+                data: {
+                    isBlocked: status,
+                },
+            });
+            if (!!updateResponse) {
+                return JSON.stringify(
+                    `Success. Updated ${updateResponse.count} users`,
+                );
+            }
+        }
+        return JSON.stringify('Failed to update');
+    }
+
+    async updateLastLoginAt(user: Partial<User>) {
+        await this.prismaService.user
+            .update({
+                where: {
+                    email: user.email,
+                },
+                data: {
+                    lastLoginAt: new Date(Date.now()),
+                },
+            })
+            .catch(() => {
+                return JSON.stringify(`Field 'lastLoginAt' not updated`);
+            });
     }
 
     private hashPassword(password: string) {
         return hashSync(password, genSaltSync(10));
-    }
-
-    async updateLastLoginAt(user: Partial<User>) {
-        await this.prismaService.user.update({
-            where: {
-                email: user.email,
-            },
-            data: {
-                lastLoginAt: new Date(Date.now()),
-            },
-        });
     }
 }

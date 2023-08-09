@@ -9,5 +9,4 @@ export interface UserInterface {
     isBlocked: boolean;
 }
 
-export interface UserListInterface
-    extends Omit<UserInterface, 'accessToken' | 'password'> {}
+export type Users = Array<Partial<UserInterface>>;

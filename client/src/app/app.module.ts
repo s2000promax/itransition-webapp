@@ -10,8 +10,8 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppLayoutModule } from '@layout/app.layout.module';
-import { AuthErrorInterceptor } from '@services/auth/auth.error.interceptor';
-
+import { AuthInterceptor } from '@shared/interceptors/auth.interceptor';
+import { CookieService } from 'ngx-cookie-service';
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http);
 }
@@ -34,9 +34,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: AuthErrorInterceptor,
+            useClass: AuthInterceptor,
             multi: true,
         },
+        CookieService,
     ],
     bootstrap: [AppComponent],
 })

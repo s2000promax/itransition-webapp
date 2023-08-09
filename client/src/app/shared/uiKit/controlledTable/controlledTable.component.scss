@@ -1,3 +1,12 @@
+.table {
+    counter-reset: rowNumber;
+}
+
+.counter-cell::before {
+    counter-increment: rowNumber;
+    content: counter(rowNumber);
+}
+
 .cells-style {
     td,
     th {
