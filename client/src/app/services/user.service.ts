@@ -52,8 +52,7 @@ export class UserService {
                 if (!body.ids?.includes(this.authService.getOwnId)) {
                     return this.fetchAll();
                 } else {
-                    this.authService.logout().subscribe();
-                    return of(null);
+                    return of(this.authService.logout().subscribe());
                 }
             }),
         );

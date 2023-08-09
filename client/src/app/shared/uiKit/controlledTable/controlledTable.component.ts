@@ -2,7 +2,12 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserService } from '@services/user.service';
 import { Users } from '@config/types/user/user.interface';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { LayoutService } from '@services/app.layout.service';
 
+@UntilDestroy({
+    checkProperties: true,
+})
 @Component({
     selector: 'mc-controlledTable',
     templateUrl: './controlledTable.component.html',
@@ -15,7 +20,10 @@ export class ControlledTableComponent implements OnInit {
 
     selectedUsers: Users = [];
 
-    constructor(private userService: UserService) {}
+    constructor(
+        private userService: UserService,
+        public layoutService: LayoutService,
+    ) {}
 
     ngOnInit() {
         this.usersList$ = this.userService.getUsers;

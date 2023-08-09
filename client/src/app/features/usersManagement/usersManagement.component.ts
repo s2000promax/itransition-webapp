@@ -4,7 +4,11 @@ import { UserInterface, Users } from '@config/types/user/user.interface';
 import { LoaderService } from '@services/loader.service';
 import { ControlledTableComponent } from '@shared/uiKit/controlledTable/controlledTable.component';
 import { tap } from 'rxjs';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
+@UntilDestroy({
+    checkProperties: true,
+})
 @Component({
     selector: 'mc-usersControlTable',
     templateUrl: './usersManagement.component.html',
