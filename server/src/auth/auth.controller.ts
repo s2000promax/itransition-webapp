@@ -19,9 +19,11 @@ import { Response } from 'express';
 import { Cookie, Public } from '../libs/decorators';
 import { UserResponse } from '../user/responses';
 import { LoginDto, RegisterDto } from './dto';
-import { ConstsEnum } from '../config/types/consts/constsEnum';
+import { CookiesEnums } from '../config/types/cookies/cookiesEnums';
 import { TokensInterface } from '../config/types/auth/tokens.interface';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('auth')
 @Public()
 @Controller('auth')
 export class AuthController {
@@ -57,25 +59,24 @@ export class AuthController {
 
     @Get('logout')
     async logout(
-        @Cookie(ConstsEnum.REFRESH_TOKEN) refreshToken: string,
+        @Cookie(CookiesEnums.REFRESH_TOKEN) refreshToken: string,
         @Res() res: Response,
     ) {
         if (!refreshToken) {
-            res.sendStatus(HttpStatus.OK);
-            return null;
+            res.status(HttpStatus.OK).send();
         }
         await this.authService.deleteRefreshToken(refreshToken);
-        res.cookie(ConstsEnum.REFRESH_TOKEN, '', {
+        res.cookie(CookiesEnums.REFRESH_TOKEN, '', {
             httpOnly: true,
             secure: true,
             expires: new Date(),
         });
-        res.sendStatus(HttpStatus.OK);
+        res.status(HttpStatus.OK).send();
     }
 
     @Get('refresh-tokens')
     async refreshTokens(
-        @Cookie(ConstsEnum.REFRESH_TOKEN) refreshToken: string,
+        @Cookie(CookiesEnums.REFRESH_TOKEN) refreshToken: string,
         @Res() res: Response,
     ) {
         if (!refreshToken) {
@@ -94,7 +95,7 @@ export class AuthController {
         if (!tokens) {
             throw new UnauthorizedException();
         }
-        res.cookie(ConstsEnum.REFRESH_TOKEN, tokens.refreshToken.token, {
+        res.cookie(CookiesEnums.REFRESH_TOKEN, tokens.refreshToken.token, {
             httpOnly: true,
             sameSite: 'lax',
             expires: new Date(tokens.refreshToken.expired),

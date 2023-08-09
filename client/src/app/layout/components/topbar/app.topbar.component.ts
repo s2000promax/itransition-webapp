@@ -4,7 +4,11 @@ import { LayoutService } from '@services/app.layout.service';
 import { RoutesEnums } from '@config/routes/routesEnums';
 import { AuthService } from '@services/auth.service';
 import { Router } from '@angular/router';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
+@UntilDestroy({
+    checkProperties: true,
+})
 @Component({
     selector: 'app-topbar',
     templateUrl: './app.topbar.component.html',
@@ -34,7 +38,7 @@ export class AppTopBarComponent {
         this.router.navigate([RoutesEnums.AUTH, RoutesEnums.AUTH_LOGIN]);
     }
 
-    onLogout(): void {
-        this.authService.logout().subscribe();
+    onLogout() {
+        return this.authService.logout().subscribe();
     }
 }

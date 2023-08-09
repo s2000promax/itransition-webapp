@@ -9,15 +9,16 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     app.enableShutdownHooks();
     app.enableCors({
-        origin: 'http://localhost:4200',
-        // origin: 'http://127.0.0.1:4200',
+        origin: appConfig().deploy_origin,
         credentials: true,
     });
     app.use(cookieParser());
     app.setGlobalPrefix('api');
 
-    const document = SwaggerModule.createDocument(app, swaggerConfig());
-    SwaggerModule.setup('api-doc', app, document);
+    if (process.env.NODE_ENV !== 'production') {
+        const document = SwaggerModule.createDocument(app, swaggerConfig());
+        SwaggerModule.setup('api-doc', app, document);
+    }
 
     const port = appConfig().port;
 

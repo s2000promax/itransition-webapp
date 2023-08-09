@@ -83,6 +83,7 @@ export class UserService {
                 );
             }
         }
+
         return JSON.stringify('Failed to update');
     }
 
