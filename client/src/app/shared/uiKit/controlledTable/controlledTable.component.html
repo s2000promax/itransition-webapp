@@ -1,15 +1,18 @@
 <p-table
-    [value]="usersList"
-    [(selection)]="selectedUser"
+    [value]="(usersList$ | async) ?? []"
+    [(selection)]="selectedUsers"
     [scrollable]="true"
     dataKey="id"
     styleClass="mt-3"
     responsiveLayout="scroll"
+    class="table"
 >
     <ng-template pTemplate="header">
         <tr class="cells-style">
-            <th class="w-4rem">
-                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            <th class="w-4rem" pFrozenColumn alignFrozen="left">
+                <p-tableHeaderCheckbox
+                    (click)="updateSelectedUsers()"
+                ></p-tableHeaderCheckbox>
             </th>
             <th>{{ 'uikit.controlled_table.header_id' | translate }}</th>
             <th>{{ 'uikit.controlled_table.header_name' | translate }}</th>
@@ -20,21 +23,26 @@
             <th>
                 {{ 'uikit.controlled_table.header_last_login_at' | translate }}
             </th>
-            <th>{{ 'uikit.controlled_table.header_status' | translate }}</th>
+            <th pFrozenColumn alignFrozen="right">
+                {{ 'uikit.controlled_table.header_status' | translate }}
+            </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" ngFor let-user [ngForOf]="selectedUser">
+    <ng-template pTemplate="body" ngFor let-user [ngForOf]="usersList$ | async">
         <tr class="cells-style">
-            <td>
-                <p-tableCheckbox [value]="user"></p-tableCheckbox>
+            <td pFrozenColumn alignFrozen="left">
+                <p-tableCheckbox
+                    [value]="user"
+                    (click)="updateSelectedUsers()"
+                ></p-tableCheckbox>
             </td>
-            <td>{{ user.id }}</td>
+            <td class="counter-cell"></td>
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.createdAt | date: 'short' }}</td>
-            <td>{{ user.lastLoginAt | date: 'short' }}</td>
-            <td>
-                <i class="pi pi-lock{{ user.isBlocked ? '-open' : '' }}"></i>
+            <td>{{ user.createdAt! | date: 'short' }}</td>
+            <td>{{ user.lastLoginAt! | date: 'short' }}</td>
+            <td pFrozenColumn alignFrozen="right">
+                <i class="pi pi-lock{{ !user.isBlocked ? '-open' : '' }}"></i>
             </td>
         </tr>
     </ng-template>

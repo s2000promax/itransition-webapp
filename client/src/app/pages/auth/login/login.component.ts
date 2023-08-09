@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@services/auth/auth.service';
+import { AuthService } from '@services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Form } from '@shared/types/forms/form.interface';
-import { LoginRequest } from '@services/auth/types/credentails.type';
+import { LoginRequest } from '@config/types/auth/credentails.type';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { RoutesEnums } from '@config/routes/routesEnums';
 import { Router } from '@angular/router';
@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.valid) {
             this.submitted = true;
             this.error = '';
+
             const { email, password, isRememberMe } =
                 this.loginForm.getRawValue();
 

@@ -3,6 +3,8 @@
 		"topbar": {
 			"logo": "Zarządzanie użytkownikami",
 			"profile": "Profil",
+			"login": "Zalogować się",
+			"logout": "Wyloguj",
 			"settings": "Ustawienia"
 		},
 		"footer": {

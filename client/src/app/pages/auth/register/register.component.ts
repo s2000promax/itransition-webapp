@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RoutesEnums } from '@config/routes/routesEnums';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Form } from '@shared/types/forms/form.interface';
-import { RegisterRequest } from '@services/auth/types/credentails.type';
-import { AuthService } from '@services/auth/auth.service';
+import { RegisterRequest } from '@config/types/auth/credentails.type';
+import { AuthService } from '@services/auth.service';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Router } from '@angular/router';
 
@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
         if (this.registerForm.valid) {
             this.submitted = true;
             this.error = '';
+
             const credentials = this.registerForm.getRawValue();
 
             this.authService.register(credentials).subscribe({

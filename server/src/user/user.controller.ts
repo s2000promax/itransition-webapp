@@ -2,54 +2,45 @@ import {
     Body,
     ClassSerializerInterceptor,
     Controller,
-    Delete,
     Get,
-    Param,
-    ParseUUIDPipe,
+    HttpCode,
     Put,
     UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserResponse } from './responses';
-import { User } from '@prisma/client';
 import { CurrentUser } from '../libs/decorators';
-import { JwtPayload } from '../config/types/auth/jwtPayload';
+import { UserResponse } from './responses';
+
+interface BodyRequestInterface {
+    ids: string[];
+    status: boolean;
+    delete: boolean;
+}
 
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @UseInterceptors(ClassSerializerInterceptor)
-    @Get(':idOrEmail')
-    async findOneUser(@Param('idOrEmail') idOrEmail: string) {
-        const user = await this.userService.findOne(idOrEmail);
-        return new UserResponse(user);
-    }
-
-    @UseInterceptors(ClassSerializerInterceptor)
     @Get()
     async getAllUsers() {
-        const users = await this.userService.findAll();
-        return users;
+        return await this.userService.findAll();
     }
 
-    @Get()
+    @Get('me')
     me(@CurrentUser() user: UserResponse) {
-        return user;
+        return JSON.stringify(user.id);
     }
 
-    @Delete(':id')
-    async deleteUser(
-        @Param('id', ParseUUIDPipe) id: string,
-        @CurrentUser() user: JwtPayload,
-    ) {
-        return this.userService.delete(id, user);
-    }
-
-    @UseInterceptors(ClassSerializerInterceptor)
     @Put()
-    async updateUser(@Body() body: Partial<User>) {
-        const user = await this.userService.save(body);
-        return new UserResponse(user);
+    async updateUsers(@Body() body: BodyRequestInterface) {
+        if (body.delete) {
+            return await this.userService.delete(body.ids);
+        } else {
+            return await this.userService.updateIsBlockedStatus(
+                body.ids,
+                body.status,
+            );
+        }
     }
 }
