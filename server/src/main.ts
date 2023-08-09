@@ -14,6 +14,7 @@ async function bootstrap() {
             appConfig().deploy_origin,
         ],
         credentials: true,
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
     });
     app.use(cookieParser());
     app.setGlobalPrefix('api');
