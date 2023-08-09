@@ -9,7 +9,7 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     app.enableShutdownHooks();
     app.enableCors({
-        origin: 'https://itransition-4.netlify.app',
+        origin: '*',
         credentials: true,
     });
     app.use(cookieParser());
