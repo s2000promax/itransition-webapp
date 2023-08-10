@@ -2,9 +2,9 @@ import { JwtModuleAsyncOptions, JwtModuleOptions } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 
 const jwtModuleOptions = (config: ConfigService): JwtModuleOptions => ({
-    secret: config.get('JWT_SECRET'),
+    secret: config.get('VERCEL_JWT_SECRET'),
     signOptions: {
-        expiresIn: config.get('JWT_EXPIRED', '5m'),
+        expiresIn: config.get('VERCEL_JWT_EXPIRED', '5m'),
     },
 });
 

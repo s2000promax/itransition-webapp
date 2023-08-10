@@ -6,10 +6,7 @@ import appConfig from './config/app/appConfig';
 import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule, {
-        cors: true,
-        bodyParser: true,
-    });
+    const app = await NestFactory.create(AppModule);
     app.enableShutdownHooks();
     app.enableCors({
         allowedHeaders: [
@@ -26,7 +23,7 @@ async function bootstrap() {
     app.use(cookieParser());
     app.setGlobalPrefix('api');
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.VERCEL_NODE_ENV !== 'production') {
         const document = SwaggerModule.createDocument(app, swaggerConfig());
         SwaggerModule.setup('api-doc', app, document);
     }
