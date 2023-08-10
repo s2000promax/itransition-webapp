@@ -11,20 +11,7 @@ async function bootstrap() {
         bodyParser: true,
     });
     app.enableShutdownHooks();
-    app.enableCors({
-        allowedHeaders: [
-            'content-type',
-            'Access-Control-Allow-Origin',
-            'Access-Control-Allow-Credentials',
-            'Authorization',
-            'Accept',
-        ],
-        origin: true,
-        methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
-        credentials: true,
-        preflightContinue: false,
-        optionsSuccessStatus: 200,
-    });
+    app.enableCors();
     app.use(cookieParser());
     app.setGlobalPrefix('api');
 
