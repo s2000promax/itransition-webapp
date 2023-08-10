@@ -6,7 +6,7 @@ import appConfig from './config/app/appConfig';
 import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule, { bodyParser: true });
     app.enableShutdownHooks();
     app.enableCors({
         allowedHeaders: [
@@ -17,7 +17,7 @@ async function bootstrap() {
             'Accept',
         ],
         origin: 'https://itransition-4.netlify.app',
-        methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+        methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
         credentials: true,
         preflightContinue: false,
         optionsSuccessStatus: 204,
