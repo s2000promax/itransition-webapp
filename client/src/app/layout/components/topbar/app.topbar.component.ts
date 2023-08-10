@@ -34,11 +34,12 @@ export class AppTopBarComponent {
         this.layoutService.showConfigSidebar();
     }
 
-    onLogin(): void {
-        this.router.navigate([RoutesEnums.AUTH, RoutesEnums.AUTH_LOGIN]);
+    onLogin() {
+        return this.router.navigate([RoutesEnums.AUTH, RoutesEnums.AUTH_LOGIN]);
     }
 
     onLogout() {
-        return this.authService.logout().subscribe();
+        this.authService.logout().subscribe();
+        return this.router.navigate([RoutesEnums.AUTH, RoutesEnums.AUTH_LOGIN]);
     }
 }

@@ -52,10 +52,15 @@ export class UserService {
                 if (!body.ids?.includes(this.authService.getOwnId)) {
                     return this.fetchAll();
                 } else {
+                    this.usersSubject.next([]);
                     return of(this.authService.logout().subscribe());
                 }
             }),
         );
+    }
+
+    removeCurrenUsers() {
+        this.usersSubject.next([]);
     }
 
     private invokeMethodPut(body: Partial<BodyRequestInterface>) {

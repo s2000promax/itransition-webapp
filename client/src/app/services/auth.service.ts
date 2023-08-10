@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@environments/environment';
-import { BehaviorSubject, map, Observable, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { PersistenceService } from '@services/persistence.service';
@@ -14,10 +14,6 @@ import {
 } from '@config/types/auth/credentails.type';
 import { UserInterface } from '@config/types/user/user.interface';
 import { CookiesEnums } from '@config/cookie/cookiesEnums';
-
-interface GetResponse {
-    exp: string;
-}
 
 @Injectable({
     providedIn: 'root',
@@ -130,10 +126,7 @@ export class AuthService {
         return this.http.get(environment.apiUrl + '/auth/logout').pipe(
             switchMap(() => {
                 this.removeCredentials();
-                return this.router.navigate([
-                    RoutesEnums.AUTH,
-                    RoutesEnums.AUTH_LOGIN,
-                ]);
+                return of(null);
             }),
         );
     }
