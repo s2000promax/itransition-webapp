@@ -49,10 +49,8 @@ export class AuthInterceptor implements HttpInterceptor {
                 Authorization: this.authService.token ?? '',
                 'Access-Control-Allow-Origin':
                     'https://itransition-4.vercel.app',
-                'Access-Control-Allow-Methods':
-                    'GET, POST, PUT, DELETE, OPTION',
+                'Access-Control-Allow-Credentials': 'true',
             },
-            withCredentials: true,
         });
 
         return next.handle(request).pipe(
