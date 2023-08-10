@@ -6,7 +6,10 @@ import appConfig from './config/app/appConfig';
 import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule, { bodyParser: true });
+    const app = await NestFactory.create(AppModule, {
+        cors: true,
+        bodyParser: true,
+    });
     app.enableShutdownHooks();
     app.enableCors({
         allowedHeaders: [
