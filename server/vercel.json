@@ -29,7 +29,7 @@
                 },
                 {
                     "key": "Access-Control-Allow-Origin",
-                    "value": "https://itransition-4.netlify.app"
+                    "value": "*"
                 },
                 {
                     "key": "Access-Control-Allow-Methods",
