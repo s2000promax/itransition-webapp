@@ -100,14 +100,12 @@ export class AuthController {
             sameSite: 'lax',
             expires: new Date(tokens.refreshToken.expired),
             secure:
-                this.configService.get('VERCEL_NODE_ENV', 'development') ===
+                this.configService.get('VERCEL_NODE_ENV', 'production') ===
                 'production',
             path: '/',
-        }).send();
-        res.status(HttpStatus.CREATED)
-            .json({
-                accessToken: tokens.accessToken,
-            })
-            .send();
+        });
+        res.status(HttpStatus.CREATED).json({
+            accessToken: tokens.accessToken,
+        });
     }
 }
