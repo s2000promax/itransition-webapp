@@ -83,6 +83,7 @@ export class AuthService {
         this.ownId = '';
         this.accessToken.next(null);
         this.persistenceService.removeKey(LocalStorageEnums.ACCESS_TOKEN);
+        this.persistenceService.removeKey(LocalStorageEnums.APP_CONFIG);
         this.cookieService.delete(CookiesEnums.REFRESH_TOKEN);
     }
 
