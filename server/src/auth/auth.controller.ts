@@ -103,10 +103,11 @@ export class AuthController {
                 this.configService.get('VERCEL_NODE_ENV', 'development') ===
                 'production',
             path: '/',
-        });
+        }).send();
         res.status(HttpStatus.CREATED)
             .json({
                 accessToken: tokens.accessToken,
-            });
+            })
+            .send();
     }
 }
