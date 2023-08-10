@@ -11,7 +11,18 @@ async function bootstrap() {
         bodyParser: true,
     });
     app.enableShutdownHooks();
-    app.enableCors();
+    app.enableCors({
+        allowedHeaders: [
+            'content-type',
+            'Access-Control-Allow-Origin',
+            'Access-Control-Allow-Credentials',
+            'Authorization',
+            'Accept',
+        ],
+        origin: 'https://itransition-4.netlify.app',
+        methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+        credentials: true,
+    });
     app.use(cookieParser());
     app.setGlobalPrefix('api');
 
