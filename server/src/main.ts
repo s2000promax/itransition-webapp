@@ -19,11 +19,11 @@ async function bootstrap() {
             'Authorization',
             'Accept',
         ],
-        origin: 'https://itransition-4.netlify.app',
+        origin: true,
         methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
         credentials: true,
         preflightContinue: false,
-        optionsSuccessStatus: 204,
+        optionsSuccessStatus: 200,
     });
     app.use(cookieParser());
     app.setGlobalPrefix('api');
