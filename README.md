@@ -2,7 +2,6 @@
 
 ## Fullstack web-application for user management
 
-
 ### Structure web-application
 
 ![Structure](./webapp-structure.png)
