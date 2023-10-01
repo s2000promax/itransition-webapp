@@ -47,9 +47,6 @@ export class AuthInterceptor implements HttpInterceptor {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
                 Authorization: this.authService.token ?? '',
-                'Access-Control-Allow-Origin':
-                    'https://itransition-4.vercel.app',
-                'Access-Control-Allow-Credentials': 'true',
             },
         });
 
